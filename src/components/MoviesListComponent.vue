@@ -110,6 +110,7 @@ export default {
       return convertedValue;
     },
 
+    // displays actual html code in the DOM and not the icons, needs more investigation
     convertIntegerToStar(integer) {
       let starValue = "";
 

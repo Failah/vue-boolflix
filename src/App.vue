@@ -28,6 +28,13 @@ export default {
     MainComponent,
   },
 
+  created() {
+    let randomLetters = ["la", "di", "da", "lo", "bel", "do", "le"];
+    let index =
+      randomLetters[Math.floor(Math.random() * randomLetters.length + 1)];
+    this.searchStart(index);
+  },
+
   // mounted() {
   //   this.generateFromApi("bello");
   // },
