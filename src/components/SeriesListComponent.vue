@@ -2,6 +2,13 @@
   <div class="series-container">
     <h2>Lista delle serie TV:</h2>
     <div class="card" v-for="serie in series" :key="serie.id">
+      <div>
+        <img
+          :src="'https://image.tmdb.org/t/p/w342' + serie.poster_path"
+          alt=""
+          @error="fixThumbError($event)"
+        />
+      </div>
       <div><span>Titolo: </span>{{ serie.name }}</div>
       <p><span>Titolo Originale: </span>{{ serie.original_name }}</p>
       <p><span>Valutazione: </span>{{ serie.vote_average }}</p>
@@ -55,6 +62,10 @@ export default {
 
     fixImgError(event) {
       event.target.src = `https://flagicons.lipis.dev/flags/1x1/xx.svg`;
+    },
+
+    fixThumbError(event) {
+      event.target.src = `https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg?ver=6`;
     },
   },
 };

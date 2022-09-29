@@ -2,6 +2,13 @@
   <div class="movies-container">
     <h2>Lista dei Film:</h2>
     <div class="card" v-for="movie in movies" :key="movie.id">
+      <div>
+        <img
+          :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path"
+          alt=""
+          @error="fixThumbError($event)"
+        />
+      </div>
       <div><span>Titolo: </span>{{ movie.title }}</div>
       <p><span>Titolo Originale: </span>{{ movie.original_title }}</p>
       <p><span>Valutazione: </span>{{ movie.vote_average }}</p>
@@ -55,6 +62,10 @@ export default {
 
     fixImgError(event) {
       event.target.src = `https://flagicons.lipis.dev/flags/1x1/xx.svg`;
+    },
+
+    fixThumbError(event) {
+      event.target.src = `https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg?ver=6`;
     },
   },
 };
