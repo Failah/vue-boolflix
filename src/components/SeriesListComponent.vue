@@ -117,13 +117,15 @@ export default {
 
   h2 {
     width: 100%;
-    margin: 20px 0px;
+    margin-top: 30px;
+    margin-bottom: 20px;
     text-decoration: underline;
+    font-size: 2.5rem;
   }
 
   .card {
     border: 1px solid grey;
-    width: calc(100% / 3 - 20px);
+    width: calc(100% / 4 - 20px);
     margin-bottom: 20px;
 
     p {
