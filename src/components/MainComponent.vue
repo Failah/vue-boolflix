@@ -5,6 +5,10 @@
 <script>
 export default {
   name: "MainComponent",
+
+  props: {
+    movies: Array,
+  },
 };
 </script>
 

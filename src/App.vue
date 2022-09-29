@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <HeaderComponent />
-    <MainComponent />
+    <HeaderComponent @search="searchStart" />
+    <MainComponent :movies="movies" />
   </div>
 </template>
 
@@ -17,8 +17,8 @@ export default {
 
   data() {
     return {
-      queryText: "",
       movies: [],
+      queryText: "",
     };
   },
 
@@ -46,6 +46,11 @@ export default {
         .catch((error) => {
           console.log(error.message);
         });
+    },
+
+    searchStart(inputText) {
+      this.queryText = inputText;
+      this.generateFromApi(this.queryText);
     },
   },
 };
