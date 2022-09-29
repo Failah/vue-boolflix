@@ -11,7 +11,9 @@
       </div>
       <div><span>Titolo: </span>{{ movie.title }}</div>
       <p><span>Titolo Originale: </span>{{ movie.original_title }}</p>
-      <p><span>Valutazione: </span>{{ movie.vote_average }}</p>
+      <p>
+        <span>Valutazione: </span>{{ voteDecimalConverter(movie.vote_average) }}
+      </p>
       <p>
         <span>Lingua: </span>
         <img
@@ -28,6 +30,12 @@
 <script>
 export default {
   name: "MoviesListComponent",
+
+  data() {
+    return {
+      vote: "",
+    };
+  },
 
   props: {
     movies: Array,
@@ -66,6 +74,11 @@ export default {
 
     fixThumbError(event) {
       event.target.src = `https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg?ver=6`;
+    },
+
+    voteDecimalConverter(value) {
+      let convertedValue = Math.ceil(value / 2);
+      return convertedValue;
     },
   },
 };
