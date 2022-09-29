@@ -1,29 +1,57 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-    test 123
+    <HeaderComponent />
+    <MainComponent />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import HeaderComponent from "@/components/HeaderComponent.vue";
+import MainComponent from "@/components/MainComponent.vue";
+
+import axios from "axios";
+import { apiKeyVS } from "@/env";
 
 export default {
   name: "App",
+
+  data() {
+    return {
+      queryText: "",
+      movies: [],
+    };
+  },
+
   components: {
-    HelloWorld,
+    HeaderComponent,
+    MainComponent,
+  },
+
+  mounted() {
+    this.generateFromApi("bello");
+  },
+
+  methods: {
+    generateFromApi(searchText) {
+      axios
+        .get(
+          `https://api.themoviedb.org/3/search/movie?api_key=${apiKeyVS}&query=${searchText}&language=it-IT`
+        )
+        .then((response) => {
+          console.log(response);
+          if (response.status === 200) {
+            this.movies = response.data.results;
+          }
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    },
   },
 };
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "@/assets/css/generics.scss";
 </style>
+
