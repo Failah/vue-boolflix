@@ -1,5 +1,5 @@
 <template>
-  <div class="movie-container">
+  <div class="movies-container">
     <div class="card" v-for="movie in movies" :key="movie.id">
       <div>{{ movie.title }}</div>
       <p>{{ movie.original_title }}</p>
@@ -39,6 +39,10 @@ export default {
           country = "dk";
           break;
         }
+        case "ko": {
+          country = "xk";
+          break;
+        }
       }
       return `https://flagicons.lipis.dev/flags/1x1/${country}.svg`;
     },
@@ -51,7 +55,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.movie-container {
+.movies-container {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
