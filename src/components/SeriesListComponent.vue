@@ -11,7 +11,38 @@
       </div>
       <div><span>Titolo: </span>{{ serie.name }}</div>
       <p><span>Titolo Originale: </span>{{ serie.original_name }}</p>
-      <p><span>Valutazione: </span>{{ serie.vote_average }}</p>
+      <p>
+        <span>Valutazione: </span>
+        <span
+          v-if="
+            voteDecimalConverter(serie.vote_average) === 1 ||
+            voteDecimalConverter(serie.vote_average) === 0
+          "
+          ><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i
+          ><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i
+          ><i class="fa-regular fa-star"></i
+        ></span>
+        <span v-if="voteDecimalConverter(serie.vote_average) === 2"
+          ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+          ><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i
+          ><i class="fa-regular fa-star"></i
+        ></span>
+        <span v-if="voteDecimalConverter(serie.vote_average) === 3"
+          ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+          ><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i
+          ><i class="fa-regular fa-star"></i
+        ></span>
+        <span v-if="voteDecimalConverter(serie.vote_average) === 4"
+          ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+          ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+          ><i class="fa-regular fa-star"></i
+        ></span>
+        <span v-if="voteDecimalConverter(serie.vote_average) === 5"
+          ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+          ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+          ><i class="fa-solid fa-star"></i
+        ></span>
+      </p>
       <p>
         <span>Lingua: </span>
         <img
@@ -65,7 +96,12 @@ export default {
     },
 
     fixThumbError(event) {
-      event.target.src = `https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg?ver=6`;
+      event.target.src = `https://i.ibb.co/5WrL0PB/noimageava-372x558.webp`;
+    },
+
+    voteDecimalConverter(value) {
+      let convertedValue = Math.ceil(value / 2);
+      return convertedValue;
     },
   },
 };
