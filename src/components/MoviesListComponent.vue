@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-for="movie in movies" :key="movie.id">
+  <div class="movie-container">
+    <div class="card" v-for="movie in movies" :key="movie.id">
       <div>{{ movie.title }}</div>
       <p>{{ movie.original_title }}</p>
       <p>{{ movie.vote_average }}</p>
@@ -51,6 +51,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.movie-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+
+  .card {
+    border: 1px solid grey;
+    width: calc(20% - 20px);
+  }
+}
+
 .lang-flag {
   width: 20px;
 }

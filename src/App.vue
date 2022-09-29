@@ -18,6 +18,7 @@ export default {
   data() {
     return {
       movies: [],
+      series: [],
       queryText: "",
     };
   },
@@ -38,9 +39,23 @@ export default {
           `https://api.themoviedb.org/3/search/movie?api_key=${apiKeyVS}&query=${searchText}&language=it-IT`
         )
         .then((response) => {
-          console.log(response);
+          console.log("Movies:", response);
           if (response.status === 200) {
             this.movies = response.data.results;
+          }
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+
+      axios
+        .get(
+          `https://api.themoviedb.org/3/search/tv?api_key=${apiKeyVS}&query=${searchText}&language=it-IT`
+        )
+        .then((response) => {
+          console.log("Series:", response);
+          if (response.status === 200) {
+            this.series = response.data.results;
           }
         })
         .catch((error) => {

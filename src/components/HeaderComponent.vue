@@ -1,7 +1,11 @@
 <template>
   <div class="header-container">
     <div>
-      <input type="text" v-model="inputText" />
+      <input
+        type="text"
+        v-model="inputText"
+        @keyup.enter="$emit('search', inputText)"
+      />
       <button @click="$emit('search', inputText)">RICERCA</button>
     </div>
   </div>
