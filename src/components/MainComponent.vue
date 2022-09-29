@@ -1,10 +1,21 @@
 <template>
-  <div class="main-container">Main</div>
+  <div class="main-container">
+    <MoviesListComponent :movies="movies" />
+    <SeriesListComponent />
+  </div>
 </template>
 
 <script>
+import MoviesListComponent from "@/components/MoviesListComponent.vue";
+import SeriesListComponent from "@/components/SeriesListComponent.vue";
+
 export default {
   name: "MainComponent",
+
+  components: {
+    MoviesListComponent,
+    SeriesListComponent,
+  },
 
   props: {
     movies: Array,
@@ -17,5 +28,6 @@ export default {
   background-color: #141414;
   color: white;
   height: 92vh;
+  overflow-y: scroll;
 }
 </style>

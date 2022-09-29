@@ -27,9 +27,9 @@ export default {
     MainComponent,
   },
 
-  mounted() {
-    this.generateFromApi("bello");
-  },
+  // mounted() {
+  //   this.generateFromApi("bello");
+  // },
 
   methods: {
     generateFromApi(searchText) {
