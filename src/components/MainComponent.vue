@@ -28,7 +28,6 @@ export default {
 .main-container {
   background-color: #141414;
   color: white;
-  height: 92vh;
-  overflow-y: scroll;
+  min-height: 92vh;
 }
 </style>

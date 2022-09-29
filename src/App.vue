@@ -73,5 +73,9 @@ export default {
 
 <style lang="scss">
 @import "@/assets/css/generics.scss";
+
+#app {
+  background-color: #0b0b0b;
+}
 </style>
 

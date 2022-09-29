@@ -1,10 +1,12 @@
 <template>
   <div class="movies-container">
+    <h2>Lista dei Film:</h2>
     <div class="card" v-for="movie in movies" :key="movie.id">
-      <div>{{ movie.title }}</div>
-      <p>{{ movie.original_title }}</p>
-      <p>{{ movie.vote_average }}</p>
+      <div><span>Titolo: </span>{{ movie.title }}</div>
+      <p><span>Titolo Originale: </span>{{ movie.original_title }}</p>
+      <p><span>Valutazione: </span>{{ movie.vote_average }}</p>
       <p>
+        <span>Lingua: </span>
         <img
           class="lang-flag"
           :src="getFlag(movie.original_language)"
@@ -43,6 +45,10 @@ export default {
           country = "xk";
           break;
         }
+        case "hi": {
+          country = "in";
+          break;
+        }
       }
       return `https://flagicons.lipis.dev/flags/1x1/${country}.svg`;
     },
@@ -60,11 +66,23 @@ export default {
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
+  // justify-content: space-between;
   column-gap: 20px;
+
+  h2 {
+    width: 100%;
+    margin: 20px 0px;
+    text-decoration: underline;
+  }
 
   .card {
     border: 1px solid grey;
-    width: calc(20% - 20px);
+    width: calc(100% / 3 - 20px);
+    margin-bottom: 20px;
+
+    p {
+      margin-top: 5px;
+    }
   }
 }
 

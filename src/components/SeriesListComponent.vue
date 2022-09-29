@@ -1,10 +1,12 @@
 <template>
   <div class="series-container">
+    <h2>Lista delle serie TV:</h2>
     <div class="card" v-for="serie in series" :key="serie.id">
-      <div>{{ serie.name }}</div>
-      <p>{{ serie.original_name }}</p>
-      <p>{{ serie.vote_average }}</p>
+      <div><span>Titolo: </span>{{ serie.name }}</div>
+      <p><span>Titolo Originale: </span>{{ serie.original_name }}</p>
+      <p><span>Valutazione: </span>{{ serie.vote_average }}</p>
       <p>
+        <span>Lingua: </span>
         <img
           class="lang-flag"
           :src="getFlag(serie.original_language)"
@@ -43,6 +45,10 @@ export default {
           country = "xk";
           break;
         }
+        case "hi": {
+          country = "in";
+          break;
+        }
       }
       return `https://flagicons.lipis.dev/flags/1x1/${country}.svg`;
     },
@@ -62,9 +68,20 @@ export default {
   flex-wrap: wrap;
   column-gap: 20px;
 
+  h2 {
+    width: 100%;
+    margin: 20px 0px;
+    text-decoration: underline;
+  }
+
   .card {
     border: 1px solid grey;
-    width: calc(20% - 20px);
+    width: calc(100% / 3 - 20px);
+    margin-bottom: 20px;
+
+    p {
+      margin-top: 5px;
+    }
   }
 }
 
