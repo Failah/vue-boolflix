@@ -28,16 +28,13 @@ export default {
     MainComponent,
   },
 
+  // just generate something "random" to display when the page is refreshed
   created() {
     let randomLetters = ["la", "di", "da", "lo", "bel", "do", "le"];
     let index =
       randomLetters[Math.floor(Math.random() * randomLetters.length + 1)];
     this.searchStart(index);
   },
-
-  // mounted() {
-  //   this.generateFromApi("bello");
-  // },
 
   methods: {
     generateFromApi(searchText) {
