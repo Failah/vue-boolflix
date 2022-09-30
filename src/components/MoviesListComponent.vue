@@ -97,6 +97,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   column-gap: 20px;
+  justify-content: space-between;
 
   h2 {
     width: 100%;

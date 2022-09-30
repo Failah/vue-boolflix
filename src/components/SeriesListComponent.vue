@@ -53,6 +53,7 @@ export default {
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   column-gap: 20px;
 
   h2 {
