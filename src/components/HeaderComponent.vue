@@ -1,6 +1,10 @@
 <template>
   <div class="header-container">
-    <h2>BOOLZAP</h2>
+    <div class="boolzap-options">
+      <h2>BOOLZAP</h2>
+      <div @click="$emit('searchPopular')">Popolari</div>
+    </div>
+
     <div>
       <input
         type="text"
@@ -38,6 +42,16 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+
+  .boolzap-options {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+
+    div {
+      cursor: pointer;
+    }
+  }
 
   h2 {
     color: red;

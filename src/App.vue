@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HeaderComponent @search="searchStart" />
+    <HeaderComponent @search="searchStart" @searchPopular="searchPopular" />
     <MainComponent :movies="movies" :series="series" />
   </div>
 </template>
@@ -30,7 +30,21 @@ export default {
 
   // just generate something "random" to display when the page is refreshed
   created() {
-    let randomLetters = ["la", "di", "da", "lo", "bel", "do", "le"];
+    let randomLetters = [
+      "la",
+      "di",
+      "da",
+      "lo",
+      "bel",
+      "do",
+      "le",
+      "fa",
+      "se",
+      "sa",
+      "de",
+      "ai",
+      "ae",
+    ];
     let index =
       randomLetters[Math.floor(Math.random() * randomLetters.length + 1)];
     this.searchStart(index);
@@ -70,6 +84,36 @@ export default {
     searchStart(inputText) {
       this.queryText = inputText;
       this.generateFromApi(this.queryText);
+    },
+
+    searchPopular() {
+      axios
+        .get(
+          `https://api.themoviedb.org/3/movie/popular?api_key=${apiKeyVS}&language=it-IT&page=1`
+        )
+        .then((response) => {
+          console.log("Popular Movies:", response);
+          if (response.status === 200) {
+            this.movies = response.data.results;
+          }
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+
+      axios
+        .get(
+          `https://api.themoviedb.org/3/tv/popular?api_key=${apiKeyVS}&language=it-IT&page=1`
+        )
+        .then((response) => {
+          console.log("Series:", response);
+          if (response.status === 200) {
+            this.series = response.data.results;
+          }
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
     },
   },
 };

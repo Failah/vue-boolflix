@@ -40,6 +40,10 @@ export default {
           country = "in";
           break;
         }
+        case "cs": {
+          country = "cz";
+          break;
+        }
       }
       return `https://flagicons.lipis.dev/flags/1x1/${country}.svg`;
     },
