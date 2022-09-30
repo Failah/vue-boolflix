@@ -1,7 +1,7 @@
 <template>
   <div class="header-container">
     <div class="boolzap-options">
-      <h2>BOOLZAP</h2>
+      <h2>BOOLFLIX</h2>
       <div @click="$emit('searchPopular')">Popolari</div>
     </div>
 
