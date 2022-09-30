@@ -13,50 +13,20 @@
       <p><span>Titolo Originale: </span>{{ serie.original_name }}</p>
       <p>
         <span>Valutazione: </span>
-        <span
-          v-if="
-            voteDecimalConverter(serie.vote_average) === 1 ||
-            voteDecimalConverter(serie.vote_average) === 0
-          "
-          ><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i
-          ><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i
-          ><i class="fa-regular fa-star"></i
-        ></span>
-        <span v-if="voteDecimalConverter(serie.vote_average) === 2"
-          ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-          ><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i
-          ><i class="fa-regular fa-star"></i
-        ></span>
-        <span v-if="voteDecimalConverter(serie.vote_average) === 3"
-          ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-          ><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i
-          ><i class="fa-regular fa-star"></i
-        ></span>
-        <span v-if="voteDecimalConverter(serie.vote_average) === 4"
-          ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-          ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-          ><i class="fa-regular fa-star"></i
-        ></span>
-        <span v-if="voteDecimalConverter(serie.vote_average) === 5"
-          ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-          ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-          ><i class="fa-solid fa-star"></i
-        ></span>
+        <StarsValutationComponent :voteInteger="serie.vote_average" />
       </p>
       <p>
         <span>Lingua: </span>
-        <img
-          class="lang-flag"
-          :src="getFlag(serie.original_language)"
-          :alt="serie.original_language"
-          @error="fixImgError($event)"
-        />
+        <LanguageFlagComponent :flagLanguage="serie.original_language" />
       </p>
     </div>
   </div>
 </template>
 
 <script>
+import StarsValutationComponent from "@/components/StarsValutationComponent.vue";
+import LanguageFlagComponent from "@/components/LanguageFlagComponent.vue";
+
 export default {
   name: "SeriesListComponent",
 
@@ -64,44 +34,14 @@ export default {
     series: Array,
   },
 
+  components: {
+    StarsValutationComponent,
+    LanguageFlagComponent,
+  },
+
   methods: {
-    getFlag(country) {
-      switch (country) {
-        case "en": {
-          country = "gb";
-          break;
-        }
-        case "ja": {
-          country = "jp";
-          break;
-        }
-        case "da": {
-          country = "dk";
-          break;
-        }
-        case "ko": {
-          country = "xk";
-          break;
-        }
-        case "hi": {
-          country = "in";
-          break;
-        }
-      }
-      return `https://flagicons.lipis.dev/flags/1x1/${country}.svg`;
-    },
-
-    fixImgError(event) {
-      event.target.src = `https://flagicons.lipis.dev/flags/1x1/xx.svg`;
-    },
-
     fixThumbError(event) {
       event.target.src = `https://i.ibb.co/5WrL0PB/noimageava-372x558.webp`;
-    },
-
-    voteDecimalConverter(value) {
-      let convertedValue = Math.ceil(value / 2);
-      return convertedValue;
     },
   },
 };
