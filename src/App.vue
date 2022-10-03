@@ -129,7 +129,9 @@ export default {
 }
 
 .image-container img {
-  min-height: 417px;
+  height: 419px;
+  object-fit: cover;
+  margin-top: 3px;
 }
 </style>
 

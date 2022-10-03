@@ -1,28 +1,30 @@
 <template>
   <div class="series-container">
     <h2>Lista delle serie TV:</h2>
-    <div class="card" v-for="serie in series" :key="serie.id">
-      <div class="image-container">
-        <img
-          :src="'https://image.tmdb.org/t/p/w342' + serie.poster_path"
-          alt=""
-          @error="fixThumbError($event)"
-        />
+    <div class="card-container">
+      <div class="card" v-for="serie in series" :key="serie.id">
+        <div class="image-container">
+          <img
+            :src="'https://image.tmdb.org/t/p/w342' + serie.poster_path"
+            alt=""
+            @error="fixThumbError($event)"
+          />
+        </div>
+        <div><span>Titolo: </span>{{ serie.name }}</div>
+        <p><span>Titolo Originale: </span>{{ serie.original_name }}</p>
+        <p>
+          <span>Valutazione: </span>
+          <StarsValutationComponent :voteInteger="serie.vote_average" />
+        </p>
+        <p>
+          <span>Lingua: </span>
+          <LanguageFlagComponent :flagLanguage="serie.original_language" />
+        </p>
+        <p class="overview">
+          <span>Overview:</span>
+          <span>{{ serie.overview }}</span>
+        </p>
       </div>
-      <div><span>Titolo: </span>{{ serie.name }}</div>
-      <p><span>Titolo Originale: </span>{{ serie.original_name }}</p>
-      <p>
-        <span>Valutazione: </span>
-        <StarsValutationComponent :voteInteger="serie.vote_average" />
-      </p>
-      <p>
-        <span>Lingua: </span>
-        <LanguageFlagComponent :flagLanguage="serie.original_language" />
-      </p>
-      <p class="overview">
-        <span>Overview:</span>
-        <span>{{ serie.overview }}</span>
-      </p>
     </div>
   </div>
 </template>
@@ -55,10 +57,14 @@ export default {
 .series-container {
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  // justify-content: space-between;
-  column-gap: 20px;
+  margin-bottom: 80px;
+
+  .card-container {
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 20px;
+    overflow-x: auto;
+  }
 
   h2 {
     width: 100%;
@@ -70,13 +76,13 @@ export default {
 
   .card {
     border: 1px solid grey;
-    width: calc(100% / 4 - 20px);
+    min-width: calc(100% / 4 - 20px);
+    height: 421px;
     margin-bottom: 20px;
-    min-height: 419px;
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 
     &:hover .image-container {
       display: none;
