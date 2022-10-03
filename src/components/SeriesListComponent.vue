@@ -2,7 +2,7 @@
   <div class="series-container">
     <h2>Lista delle serie TV:</h2>
     <div class="card" v-for="serie in series" :key="serie.id">
-      <div>
+      <div class="image-container">
         <img
           :src="'https://image.tmdb.org/t/p/w342' + serie.poster_path"
           alt=""
@@ -18,6 +18,10 @@
       <p>
         <span>Lingua: </span>
         <LanguageFlagComponent :flagLanguage="serie.original_language" />
+      </p>
+      <p class="overview">
+        <span>Overview:</span>
+        <span>{{ serie.overview }}</span>
       </p>
     </div>
   </div>
@@ -53,7 +57,7 @@ export default {
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  // justify-content: space-between;
   column-gap: 20px;
 
   h2 {
@@ -68,9 +72,27 @@ export default {
     border: 1px solid grey;
     width: calc(100% / 4 - 20px);
     margin-bottom: 20px;
+    min-height: 419px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &:hover .image-container {
+      display: none;
+    }
+
+    .image-container {
+      position: absolute;
+    }
 
     p {
       margin-top: 5px;
+    }
+
+    .overview {
+      max-height: 250px;
+      overflow-y: auto;
     }
   }
 }

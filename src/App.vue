@@ -127,5 +127,9 @@ export default {
   height: 100vh;
   overflow: hidden;
 }
+
+.image-container img {
+  min-height: 417px;
+}
 </style>
 

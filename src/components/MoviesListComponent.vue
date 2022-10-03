@@ -2,7 +2,7 @@
   <div class="movies-container">
     <h2>Lista dei Film:</h2>
     <div class="card" v-for="movie in movies" :key="movie.id">
-      <div>
+      <div class="image-container">
         <img
           :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path"
           alt=""
@@ -18,6 +18,10 @@
       <p>
         <span>Lingua: </span>
         <LanguageFlagComponent :flagLanguage="movie.original_language" />
+      </p>
+      <p class="overview">
+        <span>Overview:</span>
+        <span>{{ movie.overview }}</span>
       </p>
     </div>
   </div>
@@ -97,7 +101,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   column-gap: 20px;
-  justify-content: space-between;
+  // justify-content: space-between;
 
   h2 {
     width: 100%;
@@ -110,10 +114,28 @@ export default {
   .card {
     border: 1px solid grey;
     width: calc(100% / 4 - 20px);
+    min-height: 419px;
     margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &:hover .image-container {
+      display: none;
+    }
+
+    .image-container {
+      position: absolute;
+    }
 
     p {
       margin-top: 5px;
+    }
+
+    .overview {
+      max-height: 250px;
+      overflow-y: auto;
     }
   }
 }
