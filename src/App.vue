@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <LoginScreenComponent />
     <HeaderComponent @search="searchStart" @searchPopular="searchPopular" />
     <MainComponent :movies="movies" :series="series" />
   </div>
@@ -8,6 +9,7 @@
 <script>
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import MainComponent from "@/components/MainComponent.vue";
+import LoginScreenComponent from "@/components/LoginScreenComponent.vue";
 
 import axios from "axios";
 import { apiKeyVS } from "@/env";
@@ -26,6 +28,7 @@ export default {
   components: {
     HeaderComponent,
     MainComponent,
+    LoginScreenComponent,
   },
 
   // just generate something "random" to display when the page is refreshed
