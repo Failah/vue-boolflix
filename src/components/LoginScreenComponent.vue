@@ -1,17 +1,17 @@
 <template>
-  <div class="login-screen-container">
+  <div v-if="activeScreen === true" class="login-screen-container">
     <div class="login-options-container">
       <h1>Chi vuole guardare Boolflix?</h1>
       <div class="users">
-        <div>
+        <div @click="switchActiveLoginScreen" class="single-user">
           <img src="https://i.ibb.co/fqjLWsd/Testa-failah-rosa.png" alt="" />
           <h5>Valerio</h5>
         </div>
-        <div>
+        <div @click="switchActiveLoginScreen" class="single-user">
           <img src="http://puu.sh/Job3Q/84afadaed7.jpg" alt="" />
           <h5>Jack Sparrow</h5>
         </div>
-        <div>
+        <div @click="switchActiveLoginScreen" class="single-user">
           <img
             src="https://i.pinimg.com/originals/dc/ab/b7/dcabb7fbb2f763d680d20a3d228cc6f9.jpg"
             alt=""
@@ -26,6 +26,23 @@
 <script>
 export default {
   name: "LoginScreenComponent",
+
+  data() {
+    return {
+      activeScreen: true,
+    };
+  },
+
+  methods: {
+    switchActiveLoginScreen() {
+      console.log("Mi hai cliccato");
+      setTimeout(this.switchToFalse, 600);
+    },
+
+    switchToFalse() {
+      this.activeScreen = !this.activeScreen;
+    },
+  },
 };
 </script>
 
@@ -59,8 +76,22 @@ export default {
       justify-content: center;
       column-gap: 10%;
 
+      .single-user {
+        width: 10vw;
+        cursor: pointer;
+
+        &:hover h5 {
+          color: white;
+        }
+
+        &:hover img {
+          outline: 4px solid white;
+        }
+      }
+
       img {
         width: 10vw;
+        height: 10vw;
         border-radius: 5px;
       }
 
