@@ -1,8 +1,14 @@
 <template>
   <div class="movies-container">
+    <HorizontalSlidersComponent @slideRight="slideRight" />
     <h2>Lista dei Film:</h2>
     <div class="card-container">
-      <div class="card" v-for="movie in movies" :key="movie.id">
+      <div
+        class="card"
+        :class="{ 'slide-right': slideRightValue }"
+        v-for="movie in movies"
+        :key="movie.id"
+      >
         <div class="image-container">
           <img
             :src="'https://image.tmdb.org/t/p/w342' + movie.poster_path"
@@ -32,6 +38,7 @@
 <script>
 import StarsValutationComponent from "@/components/StarsValutationComponent.vue";
 import LanguageFlagComponent from "@/components/LanguageFlagComponent.vue";
+import HorizontalSlidersComponent from "@/components/HorizontalSlidersComponent.vue";
 
 export default {
   name: "MoviesListComponent",
@@ -39,6 +46,7 @@ export default {
   data() {
     return {
       vote: "",
+      slideRightValue: false,
     };
   },
 
@@ -49,6 +57,7 @@ export default {
   components: {
     StarsValutationComponent,
     LanguageFlagComponent,
+    HorizontalSlidersComponent,
   },
 
   methods: {
@@ -56,57 +65,40 @@ export default {
       event.target.src = `https://i.ibb.co/5WrL0PB/noimageava-372x558.webp`;
     },
 
-    // displays actual html code in the DOM and not the icons, needs more investigation
-    convertIntegerToStar(integer) {
-      let starValue = "";
-
-      switch (integer) {
-        case 1: {
-          starValue = `<i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>`;
-          break;
-        }
-        case 2: {
-          starValue = `<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>`;
-          break;
-        }
-        case 3: {
-          starValue = `<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>`;
-          break;
-        }
-        case 4: {
-          starValue = `<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>`;
-          break;
-        }
-        case 5: {
-          starValue = `<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>`;
-          break;
-        }
-      }
-
-      //   let stars = document.createElement("div");
-      //   let starsNumber = document.createTextNode(starValue);
-
-      //   stars.appendChild(starsNumber);
-
-      //   console.log(stars);
-
-      return starValue;
+    slideRight() {
+      console.log("slide right");
+      this.slideRightValue = !this.slideRightValue;
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.slide-right {
+  animation-name: slideright;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideright {
+  from {
+    left: 0;
+  }
+  to {
+    left: -1200px;
+  }
+}
+
 .movies-container {
   max-width: 1200px;
   margin: 0 auto;
-  // justify-content: space-between;
 
   .card-container {
     display: flex;
     flex-wrap: nowrap;
     column-gap: 20px;
     overflow-x: auto;
+    left: 0;
   }
 
   h2 {
