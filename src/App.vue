@@ -47,7 +47,7 @@ export default {
       "fa",
       "se",
       "sa",
-      "de",
+      "mia",
       "ai",
       "ae",
     ];

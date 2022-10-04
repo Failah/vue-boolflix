@@ -8,16 +8,8 @@
       <div @click="$emit('searchPopular')">Popolari</div>
     </div>
 
-    <div class="search">
-      <input class="input" type="text" placeholder="Titles, people, genres" />
-      <img
-        class="img"
-        src="https://static.vecteezy.com/system/resources/previews/000/442/657/non_2x/vector-search-icon.jpg"
-        alt=""
-      />
-    </div>
-
-    <div>
+    <!-- Old search bar (still working if abled) -->
+    <!-- <div>
       <input
         type="text"
         v-model="inputText"
@@ -25,6 +17,18 @@
         placeholder="Cerca film o serie tv"
       />
       <button @click="$emit('search', inputText)">CERCA</button>
+    </div> -->
+
+    <div class="search">
+      <i @click="toggleSearchInput" class="fa-solid fa-magnifying-glass"></i>
+      <input
+        v-model="inputText"
+        @keyup.enter="$emit('search', inputText)"
+        :class="{ toggle: toggleIndex === true }"
+        class="input"
+        type="text"
+        placeholder="Titoli, persone, generi"
+      />
     </div>
   </div>
 </template>
@@ -36,14 +40,54 @@ export default {
   data() {
     return {
       inputText: "",
+      toggleIndex: false,
     };
   },
 
-  methods: {},
+  methods: {
+    toggleSearchInput() {
+      console.log("search input clicked");
+      this.toggleIndex = !this.toggleIndex;
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+.search {
+  right: 15px;
+  position: absolute;
+  display: inline-block;
+  background-color: #0b0b0b;
+
+  input {
+    width: 0px;
+    height: 34px;
+    background-color: #0b0b0b;
+    box-shadow: none;
+    color: #fff;
+    border: 1px solid transparent;
+    outline: none;
+    padding-left: 35px;
+    font-size: 16px;
+    transition: 0.3s ease all;
+
+    &.toggle {
+      width: 240px;
+      border-color: #fff;
+    }
+  }
+
+  i {
+    width: 18px;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    cursor: pointer;
+  }
+}
+
 .header-container {
   max-width: 1800px;
   margin: 0 auto;
