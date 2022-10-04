@@ -112,6 +112,7 @@ export default {
 
   .card {
     border: 1px solid grey;
+    border-radius: 8px;
     min-width: calc(100% / 6 - 20px);
     height: 421px;
     margin-bottom: 20px;
@@ -127,6 +128,10 @@ export default {
 
     .image-container {
       position: absolute;
+
+      img {
+        border-radius: 8px;
+      }
     }
 
     p {

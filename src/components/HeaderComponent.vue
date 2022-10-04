@@ -19,16 +19,25 @@
       <button @click="$emit('search', inputText)">CERCA</button>
     </div> -->
 
-    <div class="search">
-      <i @click="toggleSearchInput" class="fa-solid fa-magnifying-glass"></i>
-      <input
-        v-model="inputText"
-        @keyup.enter="$emit('search', inputText)"
-        :class="{ toggle: toggleIndex === true }"
-        class="input"
-        type="text"
-        placeholder="Titoli, persone, generi"
-      />
+    <div id="header-right-options">
+      <div class="search">
+        <i @click="toggleSearchInput" class="fa-solid fa-magnifying-glass"></i>
+        <input
+          v-model="inputText"
+          @keyup.enter="$emit('search', inputText)"
+          :class="{ toggle: toggleIndex === true }"
+          class="input"
+          type="text"
+          placeholder="Titoli, persone, generi"
+        />
+      </div>
+      <i class="fa-solid fa-bell"></i>
+      <div class="user-header-manage">
+        <div>
+          <img src="https://i.ibb.co/fqjLWsd/Testa-failah-rosa.png" alt="" />
+        </div>
+        <i class="fa-solid fa-caret-down"></i>
+      </div>
     </div>
   </div>
 </template>
@@ -54,40 +63,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.search {
-  right: 15px;
-  position: absolute;
-  display: inline-block;
-  background-color: #0b0b0b;
-
-  input {
-    width: 0px;
-    height: 34px;
-    background-color: #0b0b0b;
-    box-shadow: none;
-    color: #fff;
-    border: 1px solid transparent;
-    outline: none;
-    padding-left: 35px;
-    font-size: 16px;
-    transition: 0.3s ease all;
-
-    &.toggle {
-      width: 240px;
-      border-color: #fff;
-    }
-  }
-
-  i {
-    width: 18px;
-    left: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-    position: absolute;
-    cursor: pointer;
-  }
-}
-
 .header-container {
   max-width: 1800px;
   margin: 0 auto;
@@ -98,6 +73,10 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+
+  i {
+    font-size: 1.4rem;
+  }
 
   .boolzap-options {
     display: flex;
@@ -126,6 +105,71 @@ export default {
   button {
     padding: 3px 15px;
     cursor: pointer;
+  }
+}
+
+#header-right-options {
+  display: flex;
+  align-items: center;
+
+  > i {
+    cursor: pointer;
+  }
+
+  .search {
+    right: 15px;
+    position: relative;
+    display: inline-block;
+    background-color: #0b0b0b;
+
+    input {
+      width: 0px;
+      height: 34px;
+      background-color: #0b0b0b;
+      box-shadow: none;
+      color: #fff;
+      border: 1px solid transparent;
+      outline: none;
+      padding-left: 35px;
+      font-size: 16px;
+      transition: 0.3s ease all;
+
+      &.toggle {
+        width: 240px;
+        border-color: #fff;
+      }
+    }
+
+    i {
+      width: 18px;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      position: absolute;
+      cursor: pointer;
+      font-size: 1.4rem;
+    }
+  }
+
+  .user-header-manage {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5vw;
+    margin-left: 20px;
+    margin-right: 12px;
+    cursor: pointer;
+
+    i {
+      font-size: 0.9rem !important;
+      cursor: pointer;
+    }
+
+    img {
+      width: 28px;
+      height: 28px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
   }
 }
 
