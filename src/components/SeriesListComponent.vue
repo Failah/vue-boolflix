@@ -75,7 +75,7 @@ export default {
   }
 
   .card {
-    border: 1px solid grey;
+    // border: 1px solid grey;
     border-radius: 8px;
     min-width: calc(100% / 6 - 20px);
     height: 421px;
@@ -105,6 +105,10 @@ export default {
     .overview {
       max-height: 250px;
       overflow-y: auto;
+    }
+
+    .overview::-webkit-scrollbar {
+      display: none;
     }
   }
 }
