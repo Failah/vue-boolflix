@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <NetflixLoadScreenComponent />
     <LoginScreenComponent />
     <HeaderComponent @search="searchStart" @searchPopular="searchPopular" />
     <MainComponent :movies="movies" :series="series" />
@@ -10,6 +11,7 @@
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import MainComponent from "@/components/MainComponent.vue";
 import LoginScreenComponent from "@/components/LoginScreenComponent.vue";
+import NetflixLoadScreenComponent from "@/components/NetflixLoadScreenComponent.vue";
 
 import axios from "axios";
 import { apiKeyVS } from "@/env";
@@ -29,6 +31,7 @@ export default {
     HeaderComponent,
     MainComponent,
     LoginScreenComponent,
+    NetflixLoadScreenComponent,
   },
 
   // just generate something "random" to display when the page is refreshed

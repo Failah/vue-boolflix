@@ -1,5 +1,5 @@
 <template>
-  <div class="movies-container">
+  <div id="movies-container">
     <HorizontalSlidersComponent @slideRight="slideRight" />
     <h2>Lista dei Film:</h2>
     <div class="card-container">
@@ -76,7 +76,7 @@ export default {
 <style lang="scss" scoped>
 .slide-right {
   animation-name: slideright;
-  animation-duration: 2s;
+  animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
 
@@ -89,9 +89,10 @@ export default {
   }
 }
 
-.movies-container {
-  max-width: 1200px;
+#movies-container {
+  max-width: 1800px;
   margin: 0 auto;
+  position: relative;
 
   .card-container {
     display: flex;
@@ -111,13 +112,14 @@ export default {
 
   .card {
     border: 1px solid grey;
-    min-width: calc(100% / 4 - 20px);
+    min-width: calc(100% / 6 - 20px);
     height: 421px;
     margin-bottom: 20px;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    cursor: pointer;
 
     &:hover .image-container {
       display: none;

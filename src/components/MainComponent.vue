@@ -26,6 +26,7 @@ export default {
 
 <style lang="scss" scoped>
 .main-container {
+  scroll-behavior: smooth;
   background-color: #141414;
   color: white;
   height: 92vh;

@@ -1,7 +1,9 @@
 <template>
   <div class="arrows">
-    <div class="left-arrow">LEFT</div>
-    <div @click="$emit('slideRight')" class="right-arrow">RIGHT</div>
+    <div class="left-arrow"><i class="fa-solid fa-chevron-left"></i></div>
+    <div @click="$emit('slideRight')" class="right-arrow">
+      <i class="fa-solid fa-chevron-right"></i>
+    </div>
   </div>
 </template>
 
@@ -13,12 +15,12 @@ export default {
 
 <style lang="scss" scoped>
 .arrows {
-  display: flex;
+  display: none;
   justify-content: space-between;
   max-width: 1200px;
   width: 100%;
   position: absolute;
-  top: 40%;
+  top: 50%;
 
   .left-arrow,
   .right-arrow {
